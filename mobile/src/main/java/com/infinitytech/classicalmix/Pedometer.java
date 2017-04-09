@@ -22,6 +22,7 @@ public class Pedometer extends Service implements SensorEventListener {
     private boolean running;
 
     public Pedometer() {
+        Db db = new Db(this, 1);
     }
 
     @Override
@@ -38,32 +39,13 @@ public class Pedometer extends Service implements SensorEventListener {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG, "onStartCommand");
-        runProgram();
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         Log.i(TAG, "onBind");
-        runProgram();
         return new MBinder();
-    }
-
-    private void runProgram(){
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                running = true;
-//                while (running) {
-//                    try {
-//                        Thread.sleep(2000);
-//                        Log.i(TAG, "Running:"+System.currentTimeMillis());
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            }
-//        }).start();
     }
 
     @Override

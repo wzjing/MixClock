@@ -19,20 +19,7 @@
 		android:state_focused="false">
 		<layer-list>
 
-			<item
-				android:gravity="center">
-				<shape android:shape="oval">
-					<gradient
-						android:startColor="#00636363"
-						android:endColor="#d6d6d6"
-						android:angle="45"/>
-					<size
-						android:width="205dp"
-						android:height="205dp"/>
-				</shape>
-			</item>
-
-			<item android:gravity="left|top">
+			<item android:gravity="center">
 				<shape
 					android:shape="oval">
 					<size
@@ -45,7 +32,11 @@
 				</shape>
 			</item>
 			<item
-				android:gravity="left|top" android:left="5dp" android:top="5dp">
+				android:gravity="center"
+				android:left="5dp"
+				android:right="5dp"
+				android:top="5dp"
+				android:bottom="5dp">
 				<shape
 					android:shape="oval">
 					<size

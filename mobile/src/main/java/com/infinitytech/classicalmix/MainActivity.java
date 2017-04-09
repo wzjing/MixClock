@@ -18,16 +18,17 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
 
     public final String TAG = "Pedometer";
 
-    private Intent intent;
-    private TextView textView;
+    private TextView databaseTv;
+    private TextView sensorTv;
     private Pedometer.MBinder binder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = (TextView) findViewById(R.id.textView);
-        intent = new Intent(this, Pedometer.class);
+        databaseTv = (TextView) findViewById(R.id.sql_data_tv);
+        sensorTv = (TextView) findViewById(R.id.sensor_data_tv);
+        Intent intent = new Intent(this, Pedometer.class);
         bindService(intent, this, Context.BIND_AUTO_CREATE);
     }
 
@@ -58,19 +59,25 @@ public class MainActivity extends AppCompatActivity implements ServiceConnection
         handler.sendMessage(msg);
     }
 
-    private final Handler handler = new UIHandler(this);
+    private Handler handler = new UIHandler(this);
 
-    class UIHandler extends Handler{
+    static class UIHandler extends Handler{
         private WeakReference<MainActivity> mActivity;
 
-        public UIHandler(MainActivity activity){
+        UIHandler(MainActivity activity){
             mActivity = new WeakReference<MainActivity>(activity);
         };
 
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mActivity.get().textView.setText(msg.getData().getFloat("Step", 0f)+"");
+            mActivity.get().databaseTv.setText(String.format(
+                    mActivity.get().getResources().getString(R.string.databaseText),
+                    msg.getData().getFloat("StepDatabase", 0f)));
+            mActivity.get().sensorTv.setText(String.format(
+                    mActivity.get().getResources().getString(R.string.databaseText),
+                    msg.getData().getFloat("StepSensor", 0f)));
+
         }
     }
 }

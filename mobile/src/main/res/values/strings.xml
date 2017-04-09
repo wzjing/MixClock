@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Mix Clock</string>
 	<string name="costomPageTitle">Costom</string>
+    <string name="databaseHint">Database</string>
+    <string name="sensorHint">Sensor</string>
+    <string name="databaseText">Database: %f</string>
+    <string name="sensorText">Sensor: %f</string>
 </resources>
